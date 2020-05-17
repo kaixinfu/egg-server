@@ -11,11 +11,11 @@ class UtilController extends Controller {
       fontSize: 50,
       width: 100,
       hegiht: 50,
-      noise: 3
+      noise: 3,
     })
-    this.ctx.session.captcha = captcha.text;
-    this.ctx.response.type="image/svg+xml";
-    this.ctx.body = captcha.data;
+    this.ctx.session.captcha = captcha.text
+    this.ctx.response.type = 'image/svg+xml'
+    this.ctx.body = captcha.data
   }
 }
 
