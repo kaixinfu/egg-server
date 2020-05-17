@@ -6,7 +6,7 @@ class HomeController extends Controller {
   async index() {
     const { ctx } = this
     console.log('aaaa')
-    
+
     ctx.body = 'hi, egg'
   }
 }
