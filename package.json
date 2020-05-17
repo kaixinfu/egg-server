@@ -17,7 +17,8 @@
     "egg-ci": "^1.11.0",
     "egg-mock": "^3.21.0",
     "eslint": "^5.13.0",
-    "eslint-config-egg": "^7.1.0"
+    "eslint-config-egg": "^7.1.0",
+    "husky": "^4.2.5"
   },
   "engines": {
     "node": ">=10.0.0"
@@ -33,6 +34,12 @@
     "lint": "eslint .",
     "ci": "npm run lint && npm run cov",
     "autod": "autod"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run test",
+      "pre-push": "npm test"
+    }
   },
   "ci": {
     "version": "10"
