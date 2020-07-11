@@ -9,6 +9,8 @@ module.exports = app => {
 
   // 验证码
   router.get('/captcha', controller.util.captcha)
+  // 邮箱验证码
+  router.get('/sendCode', controller.util.sendCode)
 
   router.group({ name: 'user', prefix: '/user' }, router => {
     const { login, register, info, verify } = controller.user
