@@ -44,7 +44,7 @@ class UserController extends BaseController {
     // 校验邮箱是否重复
     let isEmailRepeat = await this.checkEmail(email)
     if (isEmailRepeat) {
-      this.error('邮箱重复了', 401)
+      this.error('邮箱重复了', 400)
     } else {
       // 用户入库        
       let user = await ctx.model.User.create({
@@ -63,7 +63,10 @@ class UserController extends BaseController {
     return user
   }
   async info() {
-
+    const { ctx } = this
+    const {email} = ctx.state;
+    let user = await this.checkEmail(email)
+    this.success({...user._doc})
   }
 }
 

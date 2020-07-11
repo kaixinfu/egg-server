@@ -15,6 +15,7 @@ class UtilController extends BaseController {
     })
     // 将验证码存起来，校验
     this.ctx.session.captcha = captcha.text
+    console.log("captcha ==========: ", captcha.text);
     this.ctx.response.type = 'image/svg+xml'
     this.ctx.body = captcha.data
   }
@@ -22,6 +23,8 @@ class UtilController extends BaseController {
     const {ctx} = this
     const email = ctx.query.email
     let code = Math.random().toString().slice(2, 6)
+    console.log("emailCode ==========: ", code);
+    
     this.ctx.session.emailCode = code
     const title = "kaixin发给你的验证码"
     const text = ""

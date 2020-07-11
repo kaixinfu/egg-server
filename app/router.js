@@ -4,7 +4,8 @@
  * @param {Egg.Application} app - egg application
  */
 module.exports = app => {
-  const { router, controller } = app
+  const { router, controller, middleware } = app  
+  const jwt = middleware.jwt({app})
   router.get('/', controller.home.index)
 
   // 验证码
@@ -15,7 +16,7 @@ module.exports = app => {
   router.group({ name: 'user', prefix: '/user' }, router => {
     const { login, register, info, verify } = controller.user
     router.post('/login', login)
-    router.get('/info', info)
+    router.get('/info', jwt, info)
     router.post('/verify', verify)
     router.post('/register', register)
   })
