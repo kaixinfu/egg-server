@@ -12,8 +12,6 @@ class UserController extends BaseController {
 
   }
   async register() {
-    console.log('dsajkhjkdsa,...........')
-
     const { ctx } = this
     try {
       ctx.validate(createRule)
@@ -21,9 +19,11 @@ class UserController extends BaseController {
       return this.error('参数校验失败', 400, err.errors)
     }
     const { email, nickname, passwd, captcha } = ctx.request.body
-    console.log('ctx.request.body', ctx.request.body)
-    this.success({ name: 'kaixin' })
-
+    if (captcha.toUpperCase() === ctx.session.captcha.toUpperCase()) {
+      this.success({ name: 'kaixin' })
+    } else {
+      this.error('验证码错误')
+    }
   }
   async verify() {
 

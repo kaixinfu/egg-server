@@ -13,6 +13,7 @@ class UtilController extends Controller {
       hegiht: 50,
       noise: 3,
     })
+    // 将验证码存起来，校验
     this.ctx.session.captcha = captcha.text
     this.ctx.response.type = 'image/svg+xml'
     this.ctx.body = captcha.data

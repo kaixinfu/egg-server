@@ -7,7 +7,7 @@ class BaseController extends Controller {
     this.ctx.body = {
       code: 200,
       success: true,
-      data,
+      result: { data },
     }
   }
   message(message) {
