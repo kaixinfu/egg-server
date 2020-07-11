@@ -13,13 +13,16 @@ const createRule = {
 class UserController extends BaseController {
   async login() {
     const { ctx, app } = this
-    const { email, passwd, captcha } = ctx.request.body
+    const { email, passwd, captcha, emailCode } = ctx.request.body
     if (captcha.toUpperCase() !== ctx.session.captcha.toUpperCase()) {
-      return this.error('验证码错误')
+      return this.error('验证码错误', 400)
+    }
+    if (emailCode !== ctx.session.emailCode) {
+      return this.error('邮箱验证码错误', 400)
     }
     const user = await ctx.model.User.findOne({email, passwd: md5(passwd + hashSalt)})
     if (!user) {
-      return this.error('用户名密码不存在')
+      return this.error('用户名密码不存在', 400)
     }
     // 将用户的信息加密成token,返回
     let token = jwt.sign({_id: user._id, email}, app.config.jwt.secret, {
@@ -36,12 +39,12 @@ class UserController extends BaseController {
     }
     const { email, nickname, passwd, captcha } = ctx.request.body
     if (captcha.toUpperCase() !== ctx.session.captcha.toUpperCase()) {
-      this.error('验证码错误')
+      this.error('验证码错误', 400)
     }
     // 校验邮箱是否重复
     let isEmailRepeat = await this.checkEmail(email)
     if (isEmailRepeat) {
-      this.error('邮箱重复了')
+      this.error('邮箱重复了', 401)
     } else {
       // 用户入库        
       let user = await ctx.model.User.create({
