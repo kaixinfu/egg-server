@@ -1,33 +1,28 @@
-# server
+# egg-server
 
+## 包含
 
+- [x] [egg](https://eggjs.org/zh-cn/intro/quickstart.html)
+- [x] [egg-router-group](https://github.com/zzzs/egg-router-group)
+- [x] [express](http://www.expressjs.com.cn/)
+- [x] [mongodb](http://www.runoob.com/mongodb/mongodb-tutorial.html)
 
-## QuickStart
+## 功能预览
+- [√] 注册登录
 
-<!-- add docs here for user -->
+## 下载项目
 
-see [egg docs][egg] for more detail.
-
-### Development
-
-```bash
-$ npm i
+```sh
+$ git clone https://github.com/timer2/egg-server.git
+```
+```sh
+$ npm install
+```
+```sh
 $ npm run dev
-$ open http://localhost:7001/
 ```
-
-### Deploy
-
-```bash
-$ npm start
-$ npm stop
-```
-
-### npm scripts
-
-- Use `npm run lint` to check code style.
-- Use `npm test` to run unit test.
-- Use `npm run autod` to auto detect dependencies upgrade, see [autod](https://www.npmjs.com/package/autod) for more detail.
+### 遇到的问题
+- [√] router.group不生效：没有注释掉 module.exports
+- [√] invalid csrf token：post请求，egg默认会有校验，config.default.js可以先关掉
 
 
-[egg]: https://eggjs.org

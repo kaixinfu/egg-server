@@ -8,7 +8,12 @@
   },
   "dependencies": {
     "egg": "^2.15.1",
+    "egg-mongoose": "^3.2.0",
+    "egg-router-group": "^1.1.0",
     "egg-scripts": "^2.11.0",
+    "egg-validate": "^2.0.2",
+    "jsonwebtoken": "^8.5.1",
+    "md5": "^2.2.1",
     "svg-captcha": "^1.4.0"
   },
   "devDependencies": {
@@ -38,10 +43,7 @@
     "autod": "autod"
   },
   "husky": {
-    "hooks": {
-      "pre-commit": "npm run test",
-      "pre-push": "npm test"
-    }
+    "hooks": {}
   },
   "ci": {
     "version": "10"
@@ -53,8 +55,6 @@
   "author": "",
   "license": "MIT",
   "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
+    "commitizen": {}
   }
 }

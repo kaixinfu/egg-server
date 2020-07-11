@@ -26,5 +26,16 @@ module.exports = appInfo => {
   return {
     ...config,
     ...userConfig,
+    security: {
+      csrf: {
+        enable: false,
+      },
+    },
+    mongoose: {
+      client: {
+        url: 'mongodb://localhost:27017/kaixin',
+        options: {},
+      },
+    },
   }
 }
