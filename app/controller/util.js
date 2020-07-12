@@ -3,6 +3,8 @@
 const svgCaptcha = require('svg-captcha')
 
 const BaseController = require('./base')
+// 文件扩展的几个命令：移动等
+const fse = require("fs-extra")
 
 class UtilController extends BaseController {
   async captcha() {
@@ -39,6 +41,14 @@ class UtilController extends BaseController {
     } else {
       this.error("发送失败")
     }
+  }
+  async uploadFile() {
+    const {ctx} = this
+    const file = ctx.request.files[0]
+    const {name} = ctx.request.body
+    // 将文件移动到指定目录
+    await fse.move(file.filepath, this.config.UPLOAD_DIR + '/' + file.filename)
+    this.success({url: `/public/${file.filename}`})
   }
 }
 

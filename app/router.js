@@ -12,6 +12,8 @@ module.exports = app => {
   router.get('/captcha', controller.util.captcha)
   // 邮箱验证码
   router.get('/sendCode', controller.util.sendCode)
+  // 文件上传
+  router.post('/uploadFile', controller.util.uploadFile)
 
   router.group({ name: 'user', prefix: '/user' }, router => {
     const { login, register, info, verify } = controller.user

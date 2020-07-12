@@ -7,12 +7,14 @@
 - [x] [express](http://www.expressjs.com.cn/)
 - [x] [mongodb](http://www.runoob.com/mongodb/mongodb-tutorial.html)
 - [x] [nodemailer](http://nodemailer.com/smtp/well-known/)
+- [x] [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
 
 ## 功能预览
 - [√] 生成校验码
 - [√] 校验信息、用户注册入库
 - [√] 使用jwt生成token、解析token
 - [√] 给传过来的邮箱发送验证码
+- [√] 普通文件上传方式
 
 ## 下载项目
 
@@ -41,6 +43,7 @@ $ mongo，use **，show **，db.**，db.**.find()
 │   │    └── jwt.js              // 解析token，由解析结果返回不同状态码
 │   ├── model               
 │   │    └── user.js             // 用户的数据库模型
+│   ├── public                   // 存放静态资源
 │   ├── router.js                // 路由、路由群组
 ├── config
 │   ├── config.default.js        // 默认配置，比如mongosse地址、jwt.secret，可直接在app.cinfig访问
@@ -50,7 +53,7 @@ $ mongo，use **，show **，db.**，db.**.find()
 ├── package.json                 // 项目依赖文件
 </pre>
 ### 遇到的问题
-- [√] router.group不生效：没有注释掉 module.exports
 - [√] invalid csrf token：post请求，egg默认会有校验，config.default.js可以先关掉
+- [√] 没有收到传过来的文件：config.default.js里multipart设置接收所有
 
 
