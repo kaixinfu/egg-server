@@ -4,7 +4,7 @@ module.exports = ({app}) => {
     return async function verity(ctx, next) {
         if (!ctx.request.headers.authorization) {
             ctx.body = {
-                code: 401,
+                code: 403,
                 message: "用户没有登录"
             }
             return
@@ -23,7 +23,7 @@ module.exports = ({app}) => {
                 }
             } else {
                 ctx.body = {
-                    code: 401,
+                    code: 406,
                     message: "用户信息解析出错"
                 }
             }

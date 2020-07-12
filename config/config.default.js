@@ -33,7 +33,8 @@ module.exports = appInfo => {
     },
     mongoose: {
       client: {
-        url: 'mongodb://localhost:27017/kaixin',
+        // url: 'mongodb://localhost:27017/kaixin',
+        url: 'mongodb://106.54.179.243:27017/kaixin',
         options: {},
       },
     },
