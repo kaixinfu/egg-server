@@ -14,6 +14,8 @@ module.exports = app => {
   router.get('/sendCode', controller.util.sendCode)
   // 文件上传
   router.post('/uploadFile', controller.util.uploadFile)
+  // 切片文件上传
+  router.post('/uploadSliceFile', controller.util.uploadSliceFile)
 
   router.group({ name: 'user', prefix: '/user' }, router => {
     const { login, register, info, verify } = controller.user

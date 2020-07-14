@@ -1,6 +1,7 @@
 'use strict'
 
 const svgCaptcha = require('svg-captcha')
+const path = require("path")
 
 const BaseController = require('./base')
 // 文件扩展的几个命令：移动等
@@ -49,6 +50,20 @@ class UtilController extends BaseController {
     // 将文件移动到指定目录
     await fse.move(file.filepath, this.config.UPLOAD_DIR + '/' + file.filename)
     this.success({url: `/public/${file.filename}`})
+  }
+  async uploadSliceFile() {
+    const {ctx} = this
+    const file = ctx.request.files[0]
+    const {name, hash, chunk} = ctx.request.body
+
+    const chunkPath = path.resolve(this.config.UPLOAD_DIR, hash)
+    // 先判断文件是否已经存在
+    if (!fse.existsSync(chunkPath)) {
+      await fse.mkdir(chunkPath)
+    }
+    // 将文件移动到指定目录
+    await fse.move(file.filepath, `${chunkPath}/${name}`)
+    this.message({message: name + "切片上传成功"})
   }
 }
 
