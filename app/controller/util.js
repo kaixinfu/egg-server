@@ -72,6 +72,25 @@ class UtilController extends BaseController {
     await this.ctx.service.tools.mergeFile(filePath, hash, size)
     this.success({url: `/public/${hash}.${ext}`}, '切片上传成功')
   }
+  /**
+   * 文件名存在，直接返回成功
+   * 文件名不存在，看文件夹是否存在，存在则查看是否有已存在的切片
+   */
+  async checkFile() {
+    const {ext, hash} = this.ctx.request.body
+    const filePath = path.resolve(this.config.UPLOAD_DIR, `${hash}.${ext}`)
+    let loaded = false
+    let uploadedChunks = []
+    if (fse.existsSync(filePath)) {
+      loaded = true
+    } else {
+      uploadedChunks = await this.getUploadedChunks(path.resolve(this.config.UPLOAD_DIR, hash))
+    }
+    this.success({loaded, uploadedChunks})
+  }
+  async getUploadedChunks(filePath) {
+    return fse.existsSync(filePath) ? (await fse.readdir(filePath)).filter(name => name[0] !== '.') : []
+  }
   async clearPublic() {
     fs.unlinkSync(this.config.UPLOAD_DIR + "/")
     this.success({url: `/public/`})

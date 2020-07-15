@@ -20,6 +20,9 @@ module.exports = app => {
   router.post('/uploadSliceFile', controller.util.uploadSliceFile)
   // 合并已上传的切片文件
   router.post('/mergeUploadedSliceFile', controller.util.mergeUploadedSliceFile)
+  // 检验图片是否已经上传过，或者存在已上传过的切片
+  router.post('/checkFile', controller.util.checkFile)
+  
   
   router.group({ name: 'user', prefix: '/user' }, router => {
     const { login, register, info, verify } = controller.user
