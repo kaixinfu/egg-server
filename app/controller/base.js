@@ -3,10 +3,11 @@
 const Controller = require('egg').Controller
 
 class BaseController extends Controller {
-  success(data) {
+  success(data, message) {
     this.ctx.body = {
       code: 200,
       success: true,
+      message,
       result: {...data}
     }
   }

@@ -6,6 +6,7 @@ const path = require("path")
 const BaseController = require('./base')
 // 文件扩展的几个命令：移动等
 const fse = require("fs-extra")
+const fs = require("fs")
 
 class UtilController extends BaseController {
   async captcha() {
@@ -64,6 +65,16 @@ class UtilController extends BaseController {
     // 将文件移动到指定目录
     await fse.move(file.filepath, `${chunkPath}/${name}`)
     this.message({message: name + "切片上传成功"})
+  }
+  async mergeUploadedSliceFile() {    
+    const {ext, hash, size} = this.ctx.request.body
+    const filePath = path.resolve(this.config.UPLOAD_DIR, `${hash}.${ext}`)
+    await this.ctx.service.tools.mergeFile(filePath, hash, size)
+    this.success({url: `/public/${hash}.${ext}`}, '切片上传成功')
+  }
+  async clearPublic() {
+    fs.unlinkSync(this.config.UPLOAD_DIR + "/")
+    this.success({url: `/public/`})
   }
 }
 

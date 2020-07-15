@@ -14,9 +14,13 @@ module.exports = app => {
   router.get('/sendCode', controller.util.sendCode)
   // 文件上传
   router.post('/uploadFile', controller.util.uploadFile)
+  // 删除文件目录
+  router.get('/clearPublic', controller.util.clearPublic)
   // 切片文件上传
   router.post('/uploadSliceFile', controller.util.uploadSliceFile)
-
+  // 合并已上传的切片文件
+  router.post('/mergeUploadedSliceFile', controller.util.mergeUploadedSliceFile)
+  
   router.group({ name: 'user', prefix: '/user' }, router => {
     const { login, register, info, verify } = controller.user
     router.post('/login', login)

@@ -15,6 +15,7 @@
 - [√] 使用jwt生成token、解析token
 - [√] 给传过来的邮箱发送验证码
 - [√] 普通文件上传方式
+- [√] 切片上传方式
 
 ## 下载项目
 
@@ -55,5 +56,8 @@ $ mongo，use **，show **，db.**，db.**.find()
 ### 遇到的问题
 - [√] invalid csrf token：post请求，egg默认会有校验，config.default.js可以先关掉
 - [√] 没有收到传过来的文件：config.default.js里multipart设置接收所有
+
+### 前端项目地址：[cra-next-app](https://github.com/timer2/cra-next-app)
+### 友情推荐：[蜗牛老湿](https://github.com/shengxinjing)
 
 
