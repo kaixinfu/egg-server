@@ -55,8 +55,10 @@ class UtilController extends BaseController {
   async uploadSliceFile() {
     const {ctx} = this
     const file = ctx.request.files[0]
-    const {name, hash, chunk} = ctx.request.body
-
+    const {name, hash, chunk, isErr} = ctx.request.body
+    if (!!isErr && (Math.random() < isErr)) {
+      return this.ctx.status = 500
+    }
     const chunkPath = path.resolve(this.config.UPLOAD_DIR, hash)
     // 先判断文件是否已经存在
     if (!fse.existsSync(chunkPath)) {
