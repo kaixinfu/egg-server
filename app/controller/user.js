@@ -68,6 +68,12 @@ class UserController extends BaseController {
     let user = await this.checkEmail(email)
     this.success({...user._doc})
   }
+  async detail() {
+    const { ctx } = this
+    const {email} = ctx.state;
+    let user = await this.checkEmail(email)
+    this.success({...user._doc})
+  }
 }
 
 module.exports = UserController

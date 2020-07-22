@@ -28,6 +28,7 @@ module.exports = app => {
     const { login, register, info, verify } = controller.user
     router.post('/login', login)
     router.get('/info', jwt, info)
+    router.get('/detail', jwt, info)
     router.post('/verify', verify)
     router.post('/register', register)
   })
